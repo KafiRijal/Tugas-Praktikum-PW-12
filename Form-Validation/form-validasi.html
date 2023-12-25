@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .form-container{
+            background-color: lightgrey;
+            height: 800px;
+            border: 2px solid black;
+            border-radius: 5px;
+            padding: 30px;
+            width: 350px;
+            margin: 40px auto;
+        }
+        .form-group{
+            margin-bottom: 1em;
+        }
+        label{
+            font-weight: bold;
+            display: block;
+        }
+        input{
+            height: 2em;
+            width: 300px;
+        }
+        button{
+            background-color: green;
+            color: white;
+            width: 60px;
+            margin-top: 1em;
+            margin-right: 10px;
+            float: left;
+        }
+    </style>
+    <script>
+        function validasi(event){
+            let namaPelanggan = document.getElementById('nama').value;
+            if (namaPelanggan.length === 0 || namaPelanggan.length > 30) {
+                alert('Nama Pelanggan harus diisi dan maksimum 30 karakter');
+                return false;
+            }
+
+            let email = document.getElementById('email').value;
+            let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert('Format Email tidak valid');
+                return false;
+            }
+
+            let jamKeberangkatan = document.getElementById('jam').value;
+            let jamRegex = /^(?:[01]\d|2[0-3]):(?:[0-5]\d)$/;
+            if (!jamRegex.test(jamKeberangkatan)) {
+                alert('Format Jam Keberangkatan tidak valid. Gunakan format jam antara 00:00 dan 23:59');
+                return false;
+            }
+
+            let tujuanKeberangkatan = document.getElementById('tujuan').value;
+            if (tujuanKeberangkatan.length === 0) {
+                alert('Tujuan Keberangkatan harus diisi');
+                return false;
+            }
+
+            let jumlahTiket = document.getElementById('tiket').value;
+            if (jumlahTiket < 1 || jumlahTiket > 10) {
+                alert('Jumlah Tiket harus di antara 1 dan 10');
+                return false;
+            }
+
+            document.getElementById('hasilNamaPelanggan').innerText = namaPelanggan;
+            document.getElementById('hasilEmail').innerText = email;
+            document.getElementById('hasilJam').innerText = jamKeberangkatan;
+            document.getElementById('hasilTujuan').innerText = tujuanKeberangkatan;
+            document.getElementById('hasilTiket').innerText = jumlahTiket;
+            return false;
+        }
+    </script>
+</head>
+<body>
+    <div class="form-container">
+        <form action="" onsubmit="return validasi(event)">
+            <div class="form-group"></div>
+            <label for="">Nama Pelanggan:</label>
+            <input type="text" id="nama" placeholder="Masukkan Nama Pelanggan">
+
+            <div class="form-group"></div>
+            <label for="">Email:</label>
+            <input type="text" id="email" placeholder="Masukkan Email">
+    
+            <div class="form-group"></div>
+            <label for="">Jam Keberangkatan:</label>
+            <input type="text" id="jam" placeholder="Pilih Jam Keberangkatan">
+    
+            <div class="form-group"></div>
+            <label for="">Tujuan Keberangkatan:</label>
+            <input type="text" id="tujuan" placeholder="Masukkan Tujuan Keberangkatan">
+            
+            <div class="form-group"></div>
+            <label for="">Jumlah Tiket</label>
+            <input type="number" id="tiket" placeholder="Masukkan Jumlah Tiket">
+
+            <button onclick="validasi(event)">Submit</button>
+        </form>
+        <br>
+        <br>
+        <div class="row col-md-12 mt-5">
+            <h3 class="col-md-4 mb-3">Nama Pelanggan :</h3>
+            <h3 class="col-md-6 mb-3" id="hasilNamaPelanggan"></h3>
+
+            <h3 class="col-md-4 mb-3">Email :</h3>
+            <h3 class="col-md-6 mb-3" id="hasilEmail"></h3>
+
+            <h3 class="col-md-4 mb-3">Jam Keberangkatan :</h3>
+            <h3 class="col-md-6 mb-3" id="hasilJam"></h3>
+
+            <h3 class="col-md-4 mb-3">Tujuan Keberangkatan :</h3>
+            <h3 class="col-md-6 mb-3" id="hasilTujuan"></h3>
+
+            <h3 class="col-md-4 mb-3">Jumlah Tiket :</h3>
+            <h3 class="col-md-6 mb-3" id="hasilTiket"></h3>
+        </div>
+    </div>
+</body>
+</html>
